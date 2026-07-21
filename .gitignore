@@ -1,0 +1,72 @@
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea
+.vscode
+*.sw?
+*.swo
+*.sln
+*.suo
+*.njsproj
+*.ntvs*
+
+# Build artifacts & caches
+dist
+dist-ssr
+.next
+.cache
+build
+output
+node_modules
+src-tauri/target
+src-tauri/gen
+src-tauri/.pake
+src-tauri/.cargo/
+src-tauri/.cargo/config.toml
+src-tauri/assets/macos/dmg
+src-tauri/assets/main.wxs
+
+# Packaged installer outputs
+*.app
+*.AppImage
+*.deb
+*.dmg
+*.msi
+*.exe
+*.rpm
+
+# Logs
+*.log
+logs/
+journal/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Temporary files
+*.tmp
+*.local
+_tmp_*
+
+# Local AI assistant overrides (tracked: .claude/settings.json, .workbuddy/skills/)
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Generated code review graph files
+code-review-graph.mmd
+code-review-graph.json
+
+# Local test artifacts
+test-local.html
+src-tauri/icons/testapp.icns
+src-tauri/icons/localapp.icns
+src-tauri/icons/urltest.icns
+src-tauri/icons/githubmultiarch.icns
+
+# macOS SDK config (user-specific)
+src-tauri/.cargo/config.toml

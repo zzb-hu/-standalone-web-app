@@ -1,0 +1,387 @@
+[
+  {
+    "attributeName": "name",
+    "cliFlag": "--name <string>",
+    "description": "Application name.",
+    "schemaType": "string"
+  },
+  {
+    "attributeName": "identifier",
+    "cliFlag": "--identifier <string>",
+    "description": "Application identifier / bundle ID.",
+    "schemaType": "string",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "icon",
+    "cliFlag": "--icon <string>",
+    "description": "Application icon.",
+    "schemaType": "string",
+    "defaultValue": ""
+  },
+  {
+    "attributeName": "width",
+    "cliFlag": "--width <number>",
+    "description": "Window width in pixels.",
+    "schemaType": "number",
+    "defaultValue": 1200,
+    "schemaMin": 0,
+    "customParser": "number"
+  },
+  {
+    "attributeName": "height",
+    "cliFlag": "--height <number>",
+    "description": "Window height in pixels.",
+    "schemaType": "number",
+    "defaultValue": 780,
+    "schemaMin": 0,
+    "customParser": "number"
+  },
+  {
+    "attributeName": "useLocalFile",
+    "cliFlag": "--use-local-file",
+    "description": "Use local file packaging.",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "fullscreen",
+    "cliFlag": "--fullscreen",
+    "description": "Start in full screen.",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "hideTitleBar",
+    "cliFlag": "--hide-title-bar",
+    "description": "macOS only: hide title bar (immersive header).",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "hideWindowDecorations",
+    "cliFlag": "--hide-window-decorations",
+    "description": "Windows/Linux only: hide native window decorations.",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "multiArch",
+    "cliFlag": "--multi-arch",
+    "description": "macOS only: build a universal binary for both Intel and Apple Silicon.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "inject",
+    "cliFlag": "--inject <files>",
+    "description": "Inject local CSS/JS files into the page.",
+    "schemaType": "array",
+    "defaultValue": [],
+    "customParser": "inject"
+  },
+  {
+    "attributeName": "debug",
+    "cliFlag": "--debug",
+    "description": "Debug build with more output.",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "json",
+    "cliFlag": "--json",
+    "description": "Machine-readable output: logs to stderr, one JSON result on stdout.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "cliOnly": true
+  },
+  {
+    "attributeName": "config",
+    "cliFlag": "--config <path>",
+    "description": "Load options from a JSON config file (fields mirror CLI options, see schema/pake.schema.json).",
+    "schemaType": "string",
+    "cliOnly": true
+  },
+  {
+    "attributeName": "proxyUrl",
+    "cliFlag": "--proxy-url <url>",
+    "description": "Proxy URL for all network requests (http://, https://, socks5://).",
+    "schemaType": "string",
+    "defaultValue": "",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "userAgent",
+    "cliFlag": "--user-agent <string>",
+    "description": "Custom user agent.",
+    "schemaType": "string",
+    "defaultValue": "",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "targets",
+    "cliFlag": "--targets <string>",
+    "description": "Build target format. Platform-specific default.",
+    "schemaType": "string"
+  },
+  {
+    "attributeName": "appVersion",
+    "cliFlag": "--app-version <string>",
+    "description": "App version written into the bundle.",
+    "schemaType": "string",
+    "defaultValue": "1.0.0",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "alwaysOnTop",
+    "cliFlag": "--always-on-top",
+    "description": "Keep the window always on top.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "maximize",
+    "cliFlag": "--maximize",
+    "description": "Start window maximized.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "darkMode",
+    "cliFlag": "--dark-mode",
+    "description": "Force dark mode (macOS, Windows, Linux).",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "disabledWebShortcuts",
+    "cliFlag": "--disabled-web-shortcuts",
+    "description": "Disable web page shortcuts.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "activationShortcut",
+    "cliFlag": "--activation-shortcut <string>",
+    "description": "Global shortcut that activates the app window.",
+    "schemaType": "string",
+    "defaultValue": "",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "showSystemTray",
+    "cliFlag": "--show-system-tray",
+    "description": "Show a system tray icon.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "systemTrayIcon",
+    "cliFlag": "--system-tray-icon <string>",
+    "description": "Custom system tray icon path.",
+    "schemaType": "string",
+    "defaultValue": "",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "hideOnClose",
+    "cliFlag": "--hide-on-close [boolean]",
+    "description": "Hide window on close instead of exiting (default: true for macOS, false for others).",
+    "schemaType": "boolean",
+    "hideHelp": true,
+    "customParser": "hideOnClose"
+  },
+  {
+    "attributeName": "title",
+    "cliFlag": "--title <string>",
+    "description": "Window title.",
+    "schemaType": "string",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "incognito",
+    "cliFlag": "--incognito",
+    "description": "Launch in incognito/private mode (no persisted cookies or storage).",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "wasm",
+    "cliFlag": "--wasm",
+    "description": "Enable WebAssembly support (Flutter Web, etc.).",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "enableDragDrop",
+    "cliFlag": "--enable-drag-drop",
+    "description": "Enable drag and drop.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "keepBinary",
+    "cliFlag": "--keep-binary",
+    "description": "Keep the raw binary alongside the installer.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "bundle",
+    "cliFlag": "--no-bundle",
+    "description": "Linux only: false skips packaging and outputs the raw executable (CLI: --no-bundle).",
+    "schemaType": "boolean",
+    "defaultValue": true,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "multiInstance",
+    "cliFlag": "--multi-instance",
+    "description": "Allow multiple app instances.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "multiWindow",
+    "cliFlag": "--multi-window",
+    "description": "Allow opening multiple windows in one instance.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "startToTray",
+    "cliFlag": "--start-to-tray",
+    "description": "Start minimized to tray.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "forceInternalNavigation",
+    "cliFlag": "--force-internal-navigation",
+    "description": "Keep every link inside the Pake window.",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "internalUrlRegex",
+    "cliFlag": "--internal-url-regex <string>",
+    "description": "Regex pattern to match URLs that should be considered internal.",
+    "schemaType": "string",
+    "defaultValue": ""
+  },
+  {
+    "attributeName": "safeDomain",
+    "cliFlag": "--safe-domain <domains>",
+    "description": "Comma-separated domains kept inside the app (e.g. SSO callbacks).",
+    "schemaType": "string",
+    "defaultValue": ""
+  },
+  {
+    "attributeName": "enableFind",
+    "cliFlag": "--enable-find",
+    "description": "Enable in-page Find UI with Cmd/Ctrl+F/G shortcuts.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "installerLanguage",
+    "cliFlag": "--installer-language <string>",
+    "description": "Windows installer language.",
+    "schemaType": "string",
+    "defaultValue": "en-US",
+    "hideHelp": true
+  },
+  {
+    "attributeName": "zoom",
+    "cliFlag": "--zoom <number>",
+    "description": "Initial page zoom level (50-200).",
+    "schemaType": "number",
+    "defaultValue": 100,
+    "schemaMin": 50,
+    "schemaMax": 200,
+    "hideHelp": true,
+    "customParser": "zoom"
+  },
+  {
+    "attributeName": "minWidth",
+    "cliFlag": "--min-width <number>",
+    "description": "Minimum window width (0 = no limit).",
+    "schemaType": "number",
+    "defaultValue": 0,
+    "schemaMin": 0,
+    "hideHelp": true,
+    "customParser": "number"
+  },
+  {
+    "attributeName": "minHeight",
+    "cliFlag": "--min-height <number>",
+    "description": "Minimum window height (0 = no limit).",
+    "schemaType": "number",
+    "defaultValue": 0,
+    "schemaMin": 0,
+    "hideHelp": true,
+    "customParser": "number"
+  },
+  {
+    "attributeName": "ignoreCertificateErrors",
+    "cliFlag": "--ignore-certificate-errors",
+    "description": "Ignore certificate errors (for self-signed certificates).",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "iterativeBuild",
+    "cliFlag": "--iterative-build",
+    "description": "Rapid build mode (app only, no dmg/deb/msi), for debugging.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "newWindow",
+    "cliFlag": "--new-window",
+    "description": "Allow sites to open new windows (auth flows, tabs).",
+    "schemaType": "boolean",
+    "defaultValue": false
+  },
+  {
+    "attributeName": "install",
+    "cliFlag": "--install",
+    "description": "macOS only: move the built app into /Applications.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "camera",
+    "cliFlag": "--camera",
+    "description": "macOS only: request camera permission.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  },
+  {
+    "attributeName": "microphone",
+    "cliFlag": "--microphone",
+    "description": "macOS only: request microphone permission.",
+    "schemaType": "boolean",
+    "defaultValue": false,
+    "hideHelp": true
+  }
+]

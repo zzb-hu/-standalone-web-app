@@ -1,0 +1,39 @@
+# Build artifacts and caches
+src-tauri/target
+node_modules
+dist/**/*
+.next
+.cache
+build
+output
+
+# Binary files (handled by their own tooling)
+*.ico
+*.icns
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Lock files (auto-generated)
+Cargo.lock
+src-tauri/Cargo.lock
+pnpm-lock.yaml
+
+# CLI build artifact
+cli.js
+
+# Platform-specific generated files
+*.desktop
+*.wxs
+*.plist
+*.toml
+
+# CI configs (not source code)
+.github/workflows/

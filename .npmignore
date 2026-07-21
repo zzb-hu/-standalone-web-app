@@ -1,0 +1,64 @@
+# Build artifacts
+dist-ssr/
+*.local
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# IDE / editor
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Documentation (keep README.md only)
+*.md
+!README.md
+
+# Build config (not needed in npm package)
+rollup.config.js
+tsconfig.json
+.prettierrc*
+.eslintrc*
+vitest.config.ts
+
+# Rust / Tauri development
+src-tauri/target/
+src-tauri/.cargo/config.toml
+src-tauri/.pake/
+src-tauri/gen/
+src-tauri/assets/
+output/
+
+# CI / skills / agent config (not needed by npm consumers)
+.github/
+.claude/
+.workbuddy/
+scripts/
+tests/
+action.yml
+Dockerfile
+.dockerignore
