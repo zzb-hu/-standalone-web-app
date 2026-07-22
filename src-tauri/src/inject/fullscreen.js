@@ -32,6 +32,12 @@
     if (!document.getElementById("pake-fullscreen-style")) {
       const styleEl = document.createElement("style");
       styleEl.id = "pake-fullscreen-style";
+      // KEY: we pin the video with position:fixed but do NOT move it in the DOM.
+      // Moving the <video> out of its player container breaks React event
+      // handlers that hold a reference to the video element's original position
+      // (Douyin: like/comment/favorite/share buttons stop working).
+      // Keeping it in place means all JS frameworks still see the video where
+      // they expect it; only the visual layout changes.
       styleEl.textContent = `
       body.pake-fullscreen-active {
         overflow: hidden !important;
@@ -54,6 +60,21 @@
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
+      }
+      /* When the video itself is pinned (not the player container), we need
+         its controls overlay (Douyin xgplayer chrome, Bilibili bpx-player
+         controls) to also stack on top of the pinned video. Without this,
+         the video's z-index:2147483647 covers its own sibling controls and
+         they stop receiving hover/click — the "quality menu invisible" and
+         "like button dead" bugs share this root cause. */
+      .pake-fullscreen-element [class*="controls"],
+      .pake-fullscreen-element [class*="chrome"],
+      .pake-fullscreen-element [class*="player-overlay"],
+      .pake-fullscreen-element [class*="xg-controls"],
+      .pake-fullscreen-element [class*="xgplayer-controls"],
+      .pake-fullscreen-element [class*="bpx-controls"] {
+        position: fixed !important;
+        z-index: 2147483647 !important;
       }
     `;
       document.head.appendChild(styleEl);
@@ -135,18 +156,22 @@
         objectFit: targetElement.style.objectFit,
       };
 
-      wasInBody = targetElement.parentNode === document.body;
-      if (!wasInBody) {
-        originalParent = targetElement.parentNode;
-        originalNextSibling = targetElement.nextSibling;
-      }
+      // NOTE: we intentionally do NOT move the target element in the DOM.
+      // Previous versions did `document.body.appendChild(targetElement)` to
+      // hoist the video above page chrome, but that breaks React's internal
+      // references on Douyin: like/comment/favorite/share buttons query the
+      // video element via its original DOM position, and moving it severs
+      // that link — clicks stop working even though keyboard shortcuts still
+      // do (they're bound on document, not on the video's parent).
+      // The CSS rule `.pake-fullscreen-element { position: fixed; z-index: max }`
+      // alone is enough to visually overlay the video on the whole viewport
+      // without disturbing the DOM tree.
+      wasInBody = true; // pretend it's already in body so exitFullscreen skips the reparent dance
+      originalParent = null;
+      originalNextSibling = null;
 
       targetElement.classList.add("pake-fullscreen-element");
       document.body.classList.add("pake-fullscreen-active");
-
-      if (!wasInBody) {
-        document.body.appendChild(targetElement);
-      }
 
       appWindow.setFullscreen(true).then(() => {
         startFullscreenMonitor();
