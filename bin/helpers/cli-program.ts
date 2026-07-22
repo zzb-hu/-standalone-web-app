@@ -27,13 +27,12 @@ ${green('|_|   \\__,_|_|\\_\\___|  can turn any webpage into a desktop app with 
       // Skip malformed entries silently; generate-schema.mjs already warns.
       continue;
     }
-    const option = new Option(
-      meta.cliFlag,
-      meta.description || '',
-    );
+    const option = new Option(meta.cliFlag, meta.description || '');
 
     // Default value from DEFAULT_PAKE_OPTIONS
-    const defaultValue = (DEFAULT as unknown as Record<string, unknown>)[meta.attributeName];
+    const defaultValue = (DEFAULT as unknown as Record<string, unknown>)[
+      meta.attributeName
+    ];
     if (defaultValue !== undefined) {
       option.default(defaultValue);
     }
@@ -80,24 +79,22 @@ ${green('|_|   \\__,_|_|\\_\\___|  can turn any webpage into a desktop app with 
     cmd.addOption(option);
   }
 
-  return cmd
-    .version(packageJson.version, '-v, --version')
-    .configureHelp({
-      sortSubcommands: true,
-      visibleOptions: (command) => {
-        const options = [...command.options];
-        const helpOption = (command as unknown as { _helpOption?: Option })
-          ._helpOption;
-        if (helpOption) {
-          options.push(helpOption);
-        }
-        return options;
-      },
-      optionTerm: (option) => {
-        return option.flags;
-      },
-      optionDescription: (option) => {
-        return option.description;
-      },
-    });
+  return cmd.version(packageJson.version, '-v, --version').configureHelp({
+    sortSubcommands: true,
+    visibleOptions: (command) => {
+      const options = [...command.options];
+      const helpOption = (command as unknown as { _helpOption?: Option })
+        ._helpOption;
+      if (helpOption) {
+        options.push(helpOption);
+      }
+      return options;
+    },
+    optionTerm: (option) => {
+      return option.flags;
+    },
+    optionDescription: (option) => {
+      return option.description;
+    },
+  });
 }

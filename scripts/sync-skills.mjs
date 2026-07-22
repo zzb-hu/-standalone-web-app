@@ -17,22 +17,19 @@
  *   node scripts/sync-skills.mjs --clean      # remove Claude targets not in source
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  '..',
-);
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-const SOURCE_DIR = path.join(root, '.workbuddy', 'skills');
-const TARGET_DIR = path.join(root, '.claude', 'skills');
+const SOURCE_DIR = path.join(root, ".workbuddy", "skills");
+const TARGET_DIR = path.join(root, ".claude", "skills");
 
 const args = new Set(process.argv.slice(2));
-const FORCE = args.has('--force');
-const CHECK = args.has('--check');
-const CLEAN = args.has('--clean');
+const FORCE = args.has("--force");
+const CHECK = args.has("--check");
+const CLEAN = args.has("--clean");
 
 // --- helpers ---
 
@@ -79,8 +76,8 @@ let drift = 0;
 for (const skillName of sourceSkills) {
   const srcSkillDir = path.join(SOURCE_DIR, skillName);
   const dstSkillDir = path.join(TARGET_DIR, skillName);
-  const srcFile = path.join(srcSkillDir, 'SKILL.md');
-  const dstFile = path.join(dstSkillDir, 'SKILL.md');
+  const srcFile = path.join(srcSkillDir, "SKILL.md");
+  const dstFile = path.join(dstSkillDir, "SKILL.md");
 
   if (!fs.existsSync(srcFile)) {
     console.warn(`  skip ${skillName}: no SKILL.md in source`);
@@ -120,7 +117,9 @@ if (CLEAN) {
 
 if (CHECK) {
   if (drift > 0) {
-    console.error(`\n${drift} skill(s) out of sync. Run: node scripts/sync-skills.mjs`);
+    console.error(
+      `\n${drift} skill(s) out of sync. Run: node scripts/sync-skills.mjs`,
+    );
     process.exit(1);
   }
   console.log(`\nAll ${sourceSkills.length} skill(s) in sync.`);

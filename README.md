@@ -56,12 +56,12 @@
 
 Choose your path based on your needs:
 
-| Path | Who it's for | What you need |
-|------|-------------|---------------|
-| **[Popular Packages](#popular-packages)** | Beginners | Just download ready-made apps |
-| **[GitHub Actions](#github-actions)** | Beginners | A GitHub account, no local environment |
-| **[CLI Tool](#cli-reference)** | Developers | Node.js + Rust |
-| **[Custom Development](#development)** | Advanced users | Full dev environment |
+| Path                                      | Who it's for   | What you need                          |
+| ----------------------------------------- | -------------- | -------------------------------------- |
+| **[Popular Packages](#popular-packages)** | Beginners      | Just download ready-made apps          |
+| **[GitHub Actions](#github-actions)**     | Beginners      | A GitHub account, no local environment |
+| **[CLI Tool](#cli-reference)**            | Developers     | Node.js + Rust                         |
+| **[Custom Development](#development)**    | Advanced users | Full dev environment                   |
 
 ### Quick Start (CLI)
 
@@ -89,18 +89,21 @@ pake https://weekly.tw93.fun --name Weekly --icon https://cdn.tw93.fun/pake/week
 <summary>📖 Linux platform-specific install commands</summary>
 
 **Debian/Ubuntu:**
+
 ```bash
 sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file \
   libxdo-dev libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 ```
 
 **Fedora:**
+
 ```bash
 sudo dnf install -y webkit2gtk4.1-devel openssl-devel curl wget file \
   libappindicator-gtk3-devel librsvg2-devel gtk3-devel
 ```
 
 **Arch:**
+
 ```bash
 sudo pacman -S webkit2gtk-4.1 base-devel curl wget file \
   openssl gtk3 libappindicator-gtk3 librsvg
@@ -127,20 +130,20 @@ Config schema: https://raw.githubusercontent.com/tw93/Pake/main/schema/pake.sche
 
 Download ready-made apps from [Releases](https://github.com/tw93/Pake/releases):
 
-| App | Mac | Windows | Linux |
-|-----|-----|---------|-------|
-| WeRead | [dmg](https://github.com/tw93/Pake/releases/latest/download/WeRead.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/WeRead_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/WeRead_x86_64.deb) |
-| Twitter | [dmg](https://github.com/tw93/Pake/releases/latest/download/Twitter.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Twitter_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Twitter_x86_64.deb) |
-| DeepSeek | [dmg](https://github.com/tw93/Pake/releases/latest/download/DeepSeek.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/DeepSeek_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/DeepSeek_x86_64.deb) |
-| ChatGPT | [dmg](https://github.com/tw93/Pake/releases/latest/download/ChatGPT.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x86_64.deb) |
-| Gemini | [dmg](https://github.com/tw93/Pake/releases/latest/download/Gemini.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Gemini_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Gemini_x86_64.deb) |
-| Grok | [dmg](https://github.com/tw93/Pake/releases/latest/download/Grok.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Grok_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Grok_x86_64.deb) |
-| YouTube | [dmg](https://github.com/tw93/Pake/releases/latest/download/YouTube.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/YouTube_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/YouTube_x86_64.deb) |
+| App           | Mac                                                                           | Windows                                                                           | Linux                                                                                |
+| ------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| WeRead        | [dmg](https://github.com/tw93/Pake/releases/latest/download/WeRead.dmg)       | [msi](https://github.com/tw93/Pake/releases/latest/download/WeRead_x64.msi)       | [deb](https://github.com/tw93/Pake/releases/latest/download/WeRead_x86_64.deb)       |
+| Twitter       | [dmg](https://github.com/tw93/Pake/releases/latest/download/Twitter.dmg)      | [msi](https://github.com/tw93/Pake/releases/latest/download/Twitter_x64.msi)      | [deb](https://github.com/tw93/Pake/releases/latest/download/Twitter_x86_64.deb)      |
+| DeepSeek      | [dmg](https://github.com/tw93/Pake/releases/latest/download/DeepSeek.dmg)     | [msi](https://github.com/tw93/Pake/releases/latest/download/DeepSeek_x64.msi)     | [deb](https://github.com/tw93/Pake/releases/latest/download/DeepSeek_x86_64.deb)     |
+| ChatGPT       | [dmg](https://github.com/tw93/Pake/releases/latest/download/ChatGPT.dmg)      | [msi](https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x64.msi)      | [deb](https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x86_64.deb)      |
+| Gemini        | [dmg](https://github.com/tw93/Pake/releases/latest/download/Gemini.dmg)       | [msi](https://github.com/tw93/Pake/releases/latest/download/Gemini_x64.msi)       | [deb](https://github.com/tw93/Pake/releases/latest/download/Gemini_x86_64.deb)       |
+| Grok          | [dmg](https://github.com/tw93/Pake/releases/latest/download/Grok.dmg)         | [msi](https://github.com/tw93/Pake/releases/latest/download/Grok_x64.msi)         | [deb](https://github.com/tw93/Pake/releases/latest/download/Grok_x86_64.deb)         |
+| YouTube       | [dmg](https://github.com/tw93/Pake/releases/latest/download/YouTube.dmg)      | [msi](https://github.com/tw93/Pake/releases/latest/download/YouTube_x64.msi)      | [deb](https://github.com/tw93/Pake/releases/latest/download/YouTube_x86_64.deb)      |
 | YouTube Music | [dmg](https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic_x86_64.deb) |
-| Notion | [dmg](https://github.com/tw93/Pake/releases/latest/download/Notion.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Notion_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Notion_x86_64.deb) |
-| Excalidraw | [dmg](https://github.com/tw93/Pake/releases/latest/download/Excalidraw.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x86_64.deb) |
-| XiaoHongShu | [dmg](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x86_64.deb) |
-| Flomo | [dmg](https://github.com/tw93/Pake/releases/latest/download/Flomo.dmg) | [msi](https://github.com/tw93/Pake/releases/latest/download/Flomo_x64.msi) | [deb](https://github.com/tw93/Pake/releases/latest/download/Flomo_x86_64.deb) |
+| Notion        | [dmg](https://github.com/tw93/Pake/releases/latest/download/Notion.dmg)       | [msi](https://github.com/tw93/Pake/releases/latest/download/Notion_x64.msi)       | [deb](https://github.com/tw93/Pake/releases/latest/download/Notion_x86_64.deb)       |
+| Excalidraw    | [dmg](https://github.com/tw93/Pake/releases/latest/download/Excalidraw.dmg)   | [msi](https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x64.msi)   | [deb](https://github.com/tw93/Pake/releases/latest/download/Excalidraw_x86_64.deb)   |
+| XiaoHongShu   | [dmg](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu.dmg)  | [msi](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x64.msi)  | [deb](https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x86_64.deb)  |
+| Flomo         | [dmg](https://github.com/tw93/Pake/releases/latest/download/Flomo.dmg)        | [msi](https://github.com/tw93/Pake/releases/latest/download/Flomo_x64.msi)        | [deb](https://github.com/tw93/Pake/releases/latest/download/Flomo_x86_64.deb)        |
 
 More apps available at [Releases page](https://github.com/tw93/Pake/releases).
 
@@ -166,6 +169,7 @@ pake [url] [options]
 ```
 
 The URL can be:
+
 - A web URL: `pake https://example.com --name Example`
 - A local HTML file: `pake ./page.html --name MyPage`
 - A local directory (must contain `index.html`): `pake ./dist --name MyTool`
@@ -179,107 +183,107 @@ The URL can be:
 
 #### Application
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `[url]` | Web URL, local HTML file, or directory | Required |
-| `--name <string>` | Application name | Required |
-| `--identifier <string>` | Bundle ID (hidden) | Auto from URL+name |
-| `--icon <string>` | Application icon path/URL | Auto from favicon |
-| `--app-version <string>` | App version (hidden) | `1.0.0` |
-| `--title <string>` | Window title (hidden) | App name |
+| Parameter                | Description                            | Default            |
+| ------------------------ | -------------------------------------- | ------------------ |
+| `[url]`                  | Web URL, local HTML file, or directory | Required           |
+| `--name <string>`        | Application name                       | Required           |
+| `--identifier <string>`  | Bundle ID (hidden)                     | Auto from URL+name |
+| `--icon <string>`        | Application icon path/URL              | Auto from favicon  |
+| `--app-version <string>` | App version (hidden)                   | `1.0.0`            |
+| `--title <string>`       | Window title (hidden)                  | App name           |
 
 #### Window
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--width <number>` | Window width | 1200 |
-| `--height <number>` | Window height | 780 |
-| `--min-width <number>` | Minimum width (hidden) | 0 |
-| `--min-height <number>` | Minimum height (hidden) | 0 |
-| `--zoom <number>` | Initial zoom 50-200 (hidden) | 100 |
-| `--fullscreen` | Start fullscreen | false |
-| `--maximize` | Start maximized (hidden) | false |
-| `--hide-title-bar` | macOS: hide title bar | false |
-| `--hide-window-decorations` | Win/Linux: hide decorations | false |
-| `--always-on-top` | Always on top (hidden) | false |
-| `--resizable` | Window resizable | true |
+| Parameter                   | Description                  | Default |
+| --------------------------- | ---------------------------- | ------- |
+| `--width <number>`          | Window width                 | 1200    |
+| `--height <number>`         | Window height                | 780     |
+| `--min-width <number>`      | Minimum width (hidden)       | 0       |
+| `--min-height <number>`     | Minimum height (hidden)      | 0       |
+| `--zoom <number>`           | Initial zoom 50-200 (hidden) | 100     |
+| `--fullscreen`              | Start fullscreen             | false   |
+| `--maximize`                | Start maximized (hidden)     | false   |
+| `--hide-title-bar`          | macOS: hide title bar        | false   |
+| `--hide-window-decorations` | Win/Linux: hide decorations  | false   |
+| `--always-on-top`           | Always on top (hidden)       | false   |
+| `--resizable`               | Window resizable             | true    |
 
 #### Behavior
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--dark-mode` | Force dark mode (hidden) | false |
-| `--disabled-web-shortcuts` | Disable web shortcuts (hidden) | false |
-| `--activation-shortcut <string>` | Global activation shortcut (hidden) | empty |
-| `--enable-find` | In-page Find UI Ctrl+F/G (hidden) | false |
-| `--force-internal-navigation` | Keep all links in window | false |
-| `--internal-url-regex <string>` | Internal URL regex | empty |
-| `--safe-domain <domains>` | Comma-separated safe domains | empty |
-| `--new-window` | Allow popups (auth, tabs) | false |
-| `--multi-instance` | Allow multiple instances (hidden) | false |
-| `--multi-window` | Multiple windows per instance (hidden) | false |
+| Parameter                        | Description                            | Default |
+| -------------------------------- | -------------------------------------- | ------- |
+| `--dark-mode`                    | Force dark mode (hidden)               | false   |
+| `--disabled-web-shortcuts`       | Disable web shortcuts (hidden)         | false   |
+| `--activation-shortcut <string>` | Global activation shortcut (hidden)    | empty   |
+| `--enable-find`                  | In-page Find UI Ctrl+F/G (hidden)      | false   |
+| `--force-internal-navigation`    | Keep all links in window               | false   |
+| `--internal-url-regex <string>`  | Internal URL regex                     | empty   |
+| `--safe-domain <domains>`        | Comma-separated safe domains           | empty   |
+| `--new-window`                   | Allow popups (auth, tabs)              | false   |
+| `--multi-instance`               | Allow multiple instances (hidden)      | false   |
+| `--multi-window`                 | Multiple windows per instance (hidden) | false   |
 
 #### System Tray
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--show-system-tray` | Show system tray | false (macOS) / true (Win/Linux) |
-| `--system-tray-icon <string>` | Custom tray icon (hidden) | App icon |
-| `--hide-on-close [bool]` | Hide on close instead of exit (hidden) | true (macOS) / false |
-| `--start-to-tray` | Start minimized to tray (hidden) | false |
+| Parameter                     | Description                            | Default                          |
+| ----------------------------- | -------------------------------------- | -------------------------------- |
+| `--show-system-tray`          | Show system tray                       | false (macOS) / true (Win/Linux) |
+| `--system-tray-icon <string>` | Custom tray icon (hidden)              | App icon                         |
+| `--hide-on-close [bool]`      | Hide on close instead of exit (hidden) | true (macOS) / false             |
+| `--start-to-tray`             | Start minimized to tray (hidden)       | false                            |
 
 #### Build & Packaging
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--targets <string>` | Output format (platform-specific) | Platform default |
-| `--multi-arch` | macOS: universal binary (Intel+Apple) | false |
-| `--no-bundle` | Linux: skip packaging, raw exe (hidden) | false |
-| `--keep-binary` | Keep raw binary alongside installer (hidden) | false |
-| `--iterative-build` | Rapid debug mode, app only (hidden) | false |
-| `--use-local-file` | Copy local dir recursively | false |
-| `--inject <files>` | Inject CSS/JS (comma-separated) | empty |
-| `--proxy-url <url>` | Proxy for app WebView (hidden) | empty |
-| `--user-agent <string>` | Custom User-Agent (hidden) | Platform default |
-| `--ignore-certificate-errors` | Ignore cert errors (hidden) | false |
+| Parameter                     | Description                                  | Default          |
+| ----------------------------- | -------------------------------------------- | ---------------- |
+| `--targets <string>`          | Output format (platform-specific)            | Platform default |
+| `--multi-arch`                | macOS: universal binary (Intel+Apple)        | false            |
+| `--no-bundle`                 | Linux: skip packaging, raw exe (hidden)      | false            |
+| `--keep-binary`               | Keep raw binary alongside installer (hidden) | false            |
+| `--iterative-build`           | Rapid debug mode, app only (hidden)          | false            |
+| `--use-local-file`            | Copy local dir recursively                   | false            |
+| `--inject <files>`            | Inject CSS/JS (comma-separated)              | empty            |
+| `--proxy-url <url>`           | Proxy for app WebView (hidden)               | empty            |
+| `--user-agent <string>`       | Custom User-Agent (hidden)                   | Platform default |
+| `--ignore-certificate-errors` | Ignore cert errors (hidden)                  | false            |
 
 #### Platform-Specific
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--install` | macOS: install to /Applications (hidden) | false |
-| `--camera` | macOS: camera permission (hidden) | false |
-| `--microphone` | macOS: microphone permission (hidden) | false |
-| `--incognito` | Incognito/private mode (hidden) | false |
-| `--wasm` | Enable WebAssembly (hidden) | false |
-| `--enable-drag-drop` | Enable drag & drop (hidden) | false |
-| `--installer-language <string>` | Windows installer language (hidden) | `en-US` |
+| Parameter                       | Description                              | Default |
+| ------------------------------- | ---------------------------------------- | ------- |
+| `--install`                     | macOS: install to /Applications (hidden) | false   |
+| `--camera`                      | macOS: camera permission (hidden)        | false   |
+| `--microphone`                  | macOS: microphone permission (hidden)    | false   |
+| `--incognito`                   | Incognito/private mode (hidden)          | false   |
+| `--wasm`                        | Enable WebAssembly (hidden)              | false   |
+| `--enable-drag-drop`            | Enable drag & drop (hidden)              | false   |
+| `--installer-language <string>` | Windows installer language (hidden)      | `en-US` |
 
 #### CLI Mode
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--debug` | Debug build with more output | false |
-| `--json` | Machine-readable output | false |
-| `--config <path>` | Load options from JSON config | empty |
+| Parameter         | Description                   | Default |
+| ----------------- | ----------------------------- | ------- |
+| `--debug`         | Debug build with more output  | false   |
+| `--json`          | Machine-readable output       | false   |
+| `--config <path>` | Load options from JSON config | empty   |
 
 #### Targets by Platform
 
-| Platform | Valid targets |
-|----------|--------------|
-| macOS | `intel`, `apple`, `universal`, `app`, `dmg` |
-| Windows | `x64`, `arm64` |
-| Linux | `deb`, `appimage`, `rpm`, `zst`, and `-arm64` variants (comma-separated) |
+| Platform | Valid targets                                                            |
+| -------- | ------------------------------------------------------------------------ |
+| macOS    | `intel`, `apple`, `universal`, `app`, `dmg`                              |
+| Windows  | `x64`, `arm64`                                                           |
+| Linux    | `deb`, `appimage`, `rpm`, `zst`, and `-arm64` variants (comma-separated) |
 
 </details>
 
 ### Output Formats
 
-| Platform | Format |
-|----------|--------|
-| macOS | `.dmg`, `.app` (universal binary with `--multi-arch`) |
-| Windows | `.msi` |
-| Linux | `.deb`, `.AppImage`, `.rpm`, `.zst` |
+| Platform | Format                                                |
+| -------- | ----------------------------------------------------- |
+| macOS    | `.dmg`, `.app` (universal binary with `--multi-arch`) |
+| Windows  | `.msi`                                                |
+| Linux    | `.deb`, `.AppImage`, `.rpm`, `.zst`                   |
 
 ### Icons
 
@@ -336,17 +340,18 @@ Build Pake apps online without installing development tools locally.
     name: "MyApp"
 ```
 
-| Input | Description | Required | Default |
-|-------|-------------|----------|---------|
-| `url` | Target URL | ✅ | |
-| `name` | App name | ✅ | |
-| `output-dir` | Output directory | | `dist` |
-| `icon` | Custom icon | | |
-| `width` | Window width | | `1200` |
-| `height` | Window height | | `780` |
-| `debug` | Debug mode | | `false` |
+| Input        | Description      | Required | Default |
+| ------------ | ---------------- | -------- | ------- |
+| `url`        | Target URL       | ✅       |         |
+| `name`       | App name         | ✅       |         |
+| `output-dir` | Output directory |          | `dist`  |
+| `icon`       | Custom icon      |          |         |
+| `width`      | Window width     |          | `1200`  |
+| `height`     | Window height    |          | `780`   |
+| `debug`      | Debug mode       |          | `false` |
 
 Multi-platform example:
+
 ```yaml
 jobs:
   build:
@@ -367,6 +372,7 @@ jobs:
 ### Style Customization
 
 Edit `src-tauri/src/inject/style.js` to customize appearance:
+
 - Remove ads or modify page styles
 - Apply CSS before page loads
 
@@ -382,7 +388,7 @@ Pake supports communication between the web page and Rust backend via Tauri's IP
 
 ```javascript
 // In the web page
-await window.__TAURI__.core.invoke('download_file', { url: '...' });
+await window.__TAURI__.core.invoke("download_file", { url: "..." });
 ```
 
 ```rust
@@ -394,6 +400,7 @@ async fn download_file(url: String) -> Result<(), String> { ... }
 ### Window Configuration
 
 Window options in `pake.json`:
+
 - `hide_title_bar`: macOS only (immersive header)
 - `hide_window_decorations`: Windows and Linux only
 - `fullscreen`, `maximize`, `always_on_top`, `dark_mode`
@@ -540,11 +547,11 @@ Only `main` branch. All development and releases happen here directly.
 
 Pake uses Tauri (Rust) with system WebView. **Cross-compilation is not supported** for platforms requiring native WebView:
 
-| Running on | Can build for |
-|------------|--------------|
-| Windows | Windows MSI only |
-| macOS | macOS DMG/APP only |
-| Linux | Linux DEB/AppImage/RPM only |
+| Running on | Can build for               |
+| ---------- | --------------------------- |
+| Windows    | Windows MSI only            |
+| macOS      | macOS DMG/APP only          |
+| Linux      | Linux DEB/AppImage/RPM only |
 
 To build for all three platforms, use GitHub Actions (three runners) or build on each platform separately.
 
@@ -552,14 +559,15 @@ To build for all three platforms, use GitHub Actions (three runners) or build on
 
 Four files must be updated in sync for every release:
 
-| File | Field |
-|------|-------|
-| `package.json` | `"version"` |
-| `src-tauri/Cargo.toml` | `version` under `[package]` |
-| `src-tauri/Cargo.lock` | `version` for package `pake` |
-| `src-tauri/tauri.conf.json` | `"version"` |
+| File                        | Field                        |
+| --------------------------- | ---------------------------- |
+| `package.json`              | `"version"`                  |
+| `src-tauri/Cargo.toml`      | `version` under `[package]`  |
+| `src-tauri/Cargo.lock`      | `version` for package `pake` |
+| `src-tauri/tauri.conf.json` | `"version"`                  |
 
 **One-command bump:**
+
 ```bash
 pnpm run bump:version -- X.Y.Z
 ```
@@ -567,6 +575,7 @@ pnpm run bump:version -- X.Y.Z
 Tag format: `V<major.minor.patch>` with uppercase `V` (e.g. `V3.13.1`).
 
 After version bump, rebuild CLI:
+
 ```bash
 pnpm run cli:build
 ```
@@ -574,6 +583,7 @@ pnpm run cli:build
 ## Release Workflow
 
 Pushing a `V*` tag triggers:
+
 1. **release-apps** -- reads `default_app_list.json`
 2. **create-release** -- creates GitHub Release placeholder
 3. **build-cli** -- builds and uploads CLI artifact
@@ -637,6 +647,7 @@ Install [Visual Studio Build Tools 2022](https://visualstudio.microsoft.com/visu
 #### macOS: Build Fails with Module Compilation Errors
 
 Create `src-tauri/.cargo/config.toml`:
+
 ```toml
 [env]
 MACOSX_DEPLOYMENT_TARGET = "15.0"
@@ -651,6 +662,7 @@ SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/
 #### Website Features Not Working (Login, Upload, Buttons)
 
 **Most common cause**: User-Agent detection. Set a standard Chrome UA:
+
 ```bash
 pake https://www.douyin.com --name Douyin \
   --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
@@ -695,23 +707,23 @@ pnpm install -g pake-cli
 
 ## Shortcuts Reference
 
-| Mac | Windows/Linux | Function |
-|-----|--------------|---------|
-| <kbd>⌘</kbd> + <kbd>[</kbd> | <kbd>Ctrl</kbd> + <kbd>←</kbd> | Previous page |
-| <kbd>⌘</kbd> + <kbd>]</kbd> | <kbd>Ctrl</kbd> + <kbd>→</kbd> | Next page |
-| <kbd>⌘</kbd> + <kbd>↑</kbd> | <kbd>Ctrl</kbd> + <kbd>↑</kbd> | Scroll to top |
-| <kbd>⌘</kbd> + <kbd>↓</kbd> | <kbd>Ctrl</kbd> + <kbd>↓</kbd> | Scroll to bottom |
-| <kbd>⌘</kbd> + <kbd>r</kbd> | <kbd>Ctrl</kbd> + <kbd>r</kbd> | Refresh |
-| <kbd>⌘</kbd> + <kbd>w</kbd> | <kbd>Ctrl</kbd> + <kbd>w</kbd> | Hide window |
-| <kbd>⌘</kbd> + <kbd>-</kbd> | <kbd>Ctrl</kbd> + <kbd>-</kbd> | Zoom out |
-| <kbd>⌘</kbd> + <kbd>=</kbd> | <kbd>Ctrl</kbd> + <kbd>=</kbd> | Zoom in |
-| <kbd>⌘</kbd> + <kbd>0</kbd> | <kbd>Ctrl</kbd> + <kbd>0</kbd> | Reset zoom |
-| <kbd>⌘</kbd> + <kbd>L</kbd> | <kbd>Ctrl</kbd> + <kbd>L</kbd> | Copy URL |
-| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd> | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> | Paste and Match Style |
-| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>H</kbd> | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> | Go to Home |
-| <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>I</kbd> | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> | Toggle DevTools |
-| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>⌫</kbd> | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> | Clear Cache & Restart |
-| <kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>F</kbd> | <kbd>F11</kbd> | Toggle Fullscreen |
+| Mac                                                       | Windows/Linux                                       | Function              |
+| --------------------------------------------------------- | --------------------------------------------------- | --------------------- |
+| <kbd>⌘</kbd> + <kbd>[</kbd>                               | <kbd>Ctrl</kbd> + <kbd>←</kbd>                      | Previous page         |
+| <kbd>⌘</kbd> + <kbd>]</kbd>                               | <kbd>Ctrl</kbd> + <kbd>→</kbd>                      | Next page             |
+| <kbd>⌘</kbd> + <kbd>↑</kbd>                               | <kbd>Ctrl</kbd> + <kbd>↑</kbd>                      | Scroll to top         |
+| <kbd>⌘</kbd> + <kbd>↓</kbd>                               | <kbd>Ctrl</kbd> + <kbd>↓</kbd>                      | Scroll to bottom      |
+| <kbd>⌘</kbd> + <kbd>r</kbd>                               | <kbd>Ctrl</kbd> + <kbd>r</kbd>                      | Refresh               |
+| <kbd>⌘</kbd> + <kbd>w</kbd>                               | <kbd>Ctrl</kbd> + <kbd>w</kbd>                      | Hide window           |
+| <kbd>⌘</kbd> + <kbd>-</kbd>                               | <kbd>Ctrl</kbd> + <kbd>-</kbd>                      | Zoom out              |
+| <kbd>⌘</kbd> + <kbd>=</kbd>                               | <kbd>Ctrl</kbd> + <kbd>=</kbd>                      | Zoom in               |
+| <kbd>⌘</kbd> + <kbd>0</kbd>                               | <kbd>Ctrl</kbd> + <kbd>0</kbd>                      | Reset zoom            |
+| <kbd>⌘</kbd> + <kbd>L</kbd>                               | <kbd>Ctrl</kbd> + <kbd>L</kbd>                      | Copy URL              |
+| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd> | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>   | Paste and Match Style |
+| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>H</kbd>                | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd>   | Go to Home            |
+| <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>I</kbd>                | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>   | Toggle DevTools       |
+| <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>⌫</kbd>                | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> | Clear Cache & Restart |
+| <kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>F</kbd>                | <kbd>F11</kbd>                                      | Toggle Fullscreen     |
 
 Double-click the title bar to switch fullscreen. On Windows/Linux, use `--hide-window-decorations` for frameless windows.
 
@@ -722,6 +734,7 @@ Welcome to create [pull requests](https://github.com/tw93/Pake/compare/) for bug
 ### PR Triage
 
 Sort every community PR into one of three outcomes:
+
 - **Merge as-is**: implementation is sound. Verify locally (build + tests), merge, thank the author.
 - **Right direction, needs work**: push fixes directly onto the contributor's branch to preserve authorship.
 - **Out of scope**: close as not planned with a one-line explanation.
@@ -801,21 +814,21 @@ pake https://www.douyin.com --name Douyin \
 
 Pake 基于 Tauri（Rust），**不支持交叉编译**：
 
-| 在哪个系统运行 | 能打包的目标 |
-|--------------|------------|
-| Windows | 只能打 Windows MSI |
-| macOS | 只能打 macOS DMG/APP |
-| Linux | 只能打 Linux DEB/AppImage/RPM |
+| 在哪个系统运行 | 能打包的目标                  |
+| -------------- | ----------------------------- |
+| Windows        | 只能打 Windows MSI            |
+| macOS          | 只能打 macOS DMG/APP          |
+| Linux          | 只能打 Linux DEB/AppImage/RPM |
 
 要同时打三端：用 GitHub Actions（项目自带 workflow）或三台机器分别跑。
 
 ### 输出格式
 
-| 平台 | 格式 |
-|------|------|
-| macOS | `.dmg`、`.app`（支持 universal binary） |
-| Windows | `.msi` |
-| Linux | `.deb`、`.AppImage`、`.rpm`、`.zst` |
+| 平台    | 格式                                    |
+| ------- | --------------------------------------- |
+| macOS   | `.dmg`、`.app`（支持 universal binary） |
+| Windows | `.msi`                                  |
+| Linux   | `.deb`、`.AppImage`、`.rpm`、`.zst`     |
 
 ### 开发
 

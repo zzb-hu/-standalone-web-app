@@ -240,13 +240,10 @@ export async function handleLocalFile(
     stat = await fsExtra.stat(url);
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
-    throw new PakeError(
-      `Cannot stat local input "${url}": ${detail}`,
-      {
-        code: 'INVALID_INPUT',
-        hint: 'Check that the path is accessible and not a broken symlink.',
-      },
-    );
+    throw new PakeError(`Cannot stat local input "${url}": ${detail}`, {
+      code: 'INVALID_INPUT',
+      hint: 'Check that the path is accessible and not a broken symlink.',
+    });
   }
 
   if (stat.isDirectory()) {

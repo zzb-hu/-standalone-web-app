@@ -14,4 +14,5 @@ export interface CliOptionMeta {
   customParser?: 'inject' | 'zoom' | 'hideOnClose' | 'number';
 }
 
-export const CLI_OPTIONS_METADATA: CliOptionMeta[] = metadata as CliOptionMeta[];
+export const CLI_OPTIONS_METADATA: CliOptionMeta[] =
+  metadata as CliOptionMeta[];

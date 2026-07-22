@@ -4,11 +4,11 @@
 // Replaces the original BSD sed invocation in `pnpm run format` that failed
 // on GNU sed (Linux/Windows).
 
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
 const root = process.cwd();
-const testsDir = path.join(root, 'tests');
+const testsDir = path.join(root, "tests");
 
 if (!fs.existsSync(testsDir)) {
   // No tests directory in this project; nothing to do.
@@ -45,20 +45,25 @@ function walk(dir) {
     // guards against cycles.
     if (entry.isDirectory()) {
       walk(full);
-    } else if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.ts'))) {
+    } else if (
+      entry.isFile() &&
+      (entry.name.endsWith(".js") || entry.name.endsWith(".ts"))
+    ) {
       let src;
       try {
-        src = fs.readFileSync(full, 'utf8');
+        src = fs.readFileSync(full, "utf8");
       } catch (error) {
         const detail = error instanceof Error ? error.message : String(error);
         console.error(`skip unreadable file ${full}: ${detail}`);
         continue;
       }
-      const stripped = src.replace(/[ \t]+$/gm, '');
+      const stripped = src.replace(/[ \t]+$/gm, "");
       if (stripped !== src) {
         try {
           fs.writeFileSync(full, stripped);
-          console.log(`stripped trailing whitespace: ${path.relative(root, full)}`);
+          console.log(
+            `stripped trailing whitespace: ${path.relative(root, full)}`,
+          );
         } catch (error) {
           const detail = error instanceof Error ? error.message : String(error);
           console.error(`failed to write ${full}: ${detail}`);

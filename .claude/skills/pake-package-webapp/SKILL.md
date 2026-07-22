@@ -23,16 +23,17 @@ allowed-tools:
 
 打包前必须确认：
 
-| 依赖 | 最低版本 | 检查命令 | 说明 |
-|------|---------|---------|------|
-| Rust | 1.85 | `rustc --version` | 必须。若 Rust 不在 PATH，尝试 `export PATH="$HOME/.cargo/bin:$PATH"` |
-| Node.js | 18（推荐 22） | `node --version` | |
-| WebView2 Runtime | - | Windows 10+ 自带 | 仅 Windows 需要 |
-| MSVC Build Tools | VS 2022 / VS 18 Community | 看 `C:\Program Files\Microsoft Visual Studio\` | 仅 Windows 需要 |
-| Xcode Command Line Tools | - | `xcode-select -p` | 仅 macOS 需要 |
-| libwebkit2gtk-4.1 | - | `apt show libwebkit2gtk-4.1-dev` | 仅 Linux 需要 |
+| 依赖                     | 最低版本                  | 检查命令                                       | 说明                                                                 |
+| ------------------------ | ------------------------- | ---------------------------------------------- | -------------------------------------------------------------------- |
+| Rust                     | 1.85                      | `rustc --version`                              | 必须。若 Rust 不在 PATH，尝试 `export PATH="$HOME/.cargo/bin:$PATH"` |
+| Node.js                  | 18（推荐 22）             | `node --version`                               |                                                                      |
+| WebView2 Runtime         | -                         | Windows 10+ 自带                               | 仅 Windows 需要                                                      |
+| MSVC Build Tools         | VS 2022 / VS 18 Community | 看 `C:\Program Files\Microsoft Visual Studio\` | 仅 Windows 需要                                                      |
+| Xcode Command Line Tools | -                         | `xcode-select -p`                              | 仅 macOS 需要                                                        |
+| libwebkit2gtk-4.1        | -                         | `apt show libwebkit2gtk-4.1-dev`               | 仅 Linux 需要                                                        |
 
 **Rust 路径注意**：本机 Rust 可能装在 `~/.cargo/bin/` 但不在 PATH。打包前执行：
+
 ```bash
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
@@ -133,13 +134,14 @@ node dist/cli.js https://example.com --name Example --json
 
 **Pake 基于 Tauri（Rust），不支持交叉编译到需要原生 WebView 的目标平台。**
 
-| 在哪个平台运行 | 能打包的目标 |
-|--------------|------------|
-| Windows | 只能打 Windows MSI |
-| macOS | 只能打 macOS DMG/APP（可加 `--multi-arch` 打 universal binary） |
-| Linux | 只能打 Linux DEB/AppImage/RPM |
+| 在哪个平台运行 | 能打包的目标                                                    |
+| -------------- | --------------------------------------------------------------- |
+| Windows        | 只能打 Windows MSI                                              |
+| macOS          | 只能打 macOS DMG/APP（可加 `--multi-arch` 打 universal binary） |
+| Linux          | 只能打 Linux DEB/AppImage/RPM                                   |
 
 要同时打三端：
+
 - **方案 A（推荐）**：用 GitHub Actions，项目自带 `.github/workflows/pake-cli.yaml` 和 `single-app.yaml`，在 macOS/Windows/Linux 三个 runner 上并行构建
 - **方案 B**：在三台不同系统的机器上分别跑 Pake
 
@@ -158,13 +160,27 @@ node dist/cli.js <url> --name <AppName> [options] --json
 ### 输出格式
 
 成功：
+
 ```json
 {"ok":true,"name":"X","platform":"win32","arch":"x64","outputs":[{"path":"...","sizeBytes":N,"format":"msi"}],"warnings":[],"error":null}
 ```
 
 失败：
+
 ```json
-{"ok":false,"name":null,"platform":"win32","arch":null,"outputs":[],"warnings":[],"error":{"code":"INVALID_INPUT|ENV_MISSING|BUILD_FAILED|UNEXPECTED","message":"...","hint":"..."}}
+{
+  "ok": false,
+  "name": null,
+  "platform": "win32",
+  "arch": null,
+  "outputs": [],
+  "warnings": [],
+  "error": {
+    "code": "INVALID_INPUT|ENV_MISSING|BUILD_FAILED|UNEXPECTED",
+    "message": "...",
+    "hint": "..."
+  }
+}
 ```
 
 退出码：0=成功，2=参数错误，3=构建失败，4=环境缺失，1=未知错误。
@@ -173,40 +189,40 @@ node dist/cli.js <url> --name <AppName> [options] --json
 
 ### 常用参数
 
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| `--name <string>` | 应用名 | 必填 |
-| `--icon <path>` | 自定义图标路径 | 自动从网站 favicon 获取 |
-| `--width <number>` | 窗口宽 | 1200 |
-| `--height <number>` | 窗口高 | 780 |
-| `--user-agent <string>` | 自定义 UA | 平台默认 |
-| `--fullscreen` | 全屏启动 | false |
-| `--hide-title-bar` | macOS 隐藏标题栏 | false |
-| `--hide-window-decorations` | Windows/Linux 隐藏窗口装饰 | false |
-| `--multi-arch` | macOS universal binary | false |
-| `--inject <files>` | 注入 CSS/JS（逗号分隔） | 无 |
-| `--debug` | 调试输出 | false |
-| `--json` | 机器可读输出 | false |
-| `--config <path>` | 声明式 JSON 配置 | 无 |
+| 参数                        | 说明                       | 默认值                  |
+| --------------------------- | -------------------------- | ----------------------- |
+| `--name <string>`           | 应用名                     | 必填                    |
+| `--icon <path>`             | 自定义图标路径             | 自动从网站 favicon 获取 |
+| `--width <number>`          | 窗口宽                     | 1200                    |
+| `--height <number>`         | 窗口高                     | 780                     |
+| `--user-agent <string>`     | 自定义 UA                  | 平台默认                |
+| `--fullscreen`              | 全屏启动                   | false                   |
+| `--hide-title-bar`          | macOS 隐藏标题栏           | false                   |
+| `--hide-window-decorations` | Windows/Linux 隐藏窗口装饰 | false                   |
+| `--multi-arch`              | macOS universal binary     | false                   |
+| `--inject <files>`          | 注入 CSS/JS（逗号分隔）    | 无                      |
+| `--debug`                   | 调试输出                   | false                   |
+| `--json`                    | 机器可读输出               | false                   |
+| `--config <path>`           | 声明式 JSON 配置           | 无                      |
 
 ### 隐藏但有用
 
-| 参数 | 说明 |
-|------|------|
-| `--identifier <string>` | Bundle ID，默认 `com.pake.a<md5>` |
-| `--targets <string>` | 输出格式：`deb/appimage/rpm/zst`（Linux）、`x64/arm64`（Windows）、`intel/apple/universal/dmg/app`（macOS） |
-| `--proxy-url <url>` | 应用内置代理（HTTP/SOCKS5，烧入二进制） |
-| `--show-system-tray` | 系统托盘 |
-| `--hide-on-close [bool]` | 关闭时隐藏到托盘 |
-| `--start-to-tray` | 启动到托盘 |
-| `--activation-shortcut <string>` | 全局激活快捷键 |
-| `--multi-window` | 多窗口 |
-| `--new-window` | 允许弹窗（OAuth 流程） |
-| `--safe-domain <domains>` | SSO 回调域 |
-| `--incognito` | 无痕模式（注意：会导致登录态不持久） |
-| `--use-local-file` | 递归拷贝本地目录 |
-| `--no-bundle` | Linux 跳过打包输出原始 exe |
-| `--iterative-build` | 快速调试模式 |
+| 参数                             | 说明                                                                                                        |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `--identifier <string>`          | Bundle ID，默认 `com.pake.a<md5>`                                                                           |
+| `--targets <string>`             | 输出格式：`deb/appimage/rpm/zst`（Linux）、`x64/arm64`（Windows）、`intel/apple/universal/dmg/app`（macOS） |
+| `--proxy-url <url>`              | 应用内置代理（HTTP/SOCKS5，烧入二进制）                                                                     |
+| `--show-system-tray`             | 系统托盘                                                                                                    |
+| `--hide-on-close [bool]`         | 关闭时隐藏到托盘                                                                                            |
+| `--start-to-tray`                | 启动到托盘                                                                                                  |
+| `--activation-shortcut <string>` | 全局激活快捷键                                                                                              |
+| `--multi-window`                 | 多窗口                                                                                                      |
+| `--new-window`                   | 允许弹窗（OAuth 流程）                                                                                      |
+| `--safe-domain <domains>`        | SSO 回调域                                                                                                  |
+| `--incognito`                    | 无痕模式（注意：会导致登录态不持久）                                                                        |
+| `--use-local-file`               | 递归拷贝本地目录                                                                                            |
+| `--no-bundle`                    | Linux 跳过打包输出原始 exe                                                                                  |
+| `--iterative-build`              | 快速调试模式                                                                                                |
 
 完整参数见 `docs/cli-usage.md` 或 `node dist/cli.js --help`。
 
@@ -218,9 +234,11 @@ node dist/cli.js <url> --name <AppName> [options] --json
 
 **根因 A**：网站前端 UA 检测，识别 WebView 为非主流浏览器后降级。
 **解决**：用 `--user-agent` 设置标准 Chrome UA：
+
 ```bash
 --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
 ```
+
 - macOS 用 Safari UA：`Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15`
 - Linux 用 Chrome UA：`Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36`
 
@@ -235,20 +253,21 @@ node dist/cli.js <url> --name <AppName> [options] --json
 
 ### 坑 3：图标格式要求
 
-| 平台 | 图标格式 | 尺寸要求 |
-|------|---------|---------|
-| macOS | `.icns` | 推荐 256x256 起，自动套 squircle 蒙版 |
-| Windows | `.ico` | 推荐 256x256，多尺寸（16/24/32/48/64/128/256） |
-| Linux | `.png` | 推荐 512x512 |
+| 平台    | 图标格式 | 尺寸要求                                       |
+| ------- | -------- | ---------------------------------------------- |
+| macOS   | `.icns`  | 推荐 256x256 起，自动套 squircle 蒙版          |
+| Windows | `.ico`   | 推荐 256x256，多尺寸（16/24/32/48/64/128/256） |
+| Linux   | `.png`   | 推荐 512x512                                   |
 
 **圆角图标制作**：用户若要求圆角图标（如 B 站风格），用 SVG 绘制后 sharp 光栅化：
+
 ```javascript
 // SVG <rect rx="22%" /> 实现圆角，四角透明
 const svg = `<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
   <rect width="512" height="512" rx="112" ry="112" fill="#FB7299"/>
   ...其他元素...
 </svg>`;
-await sharp(Buffer.from(svg)).resize(256, 256).png().toFile('icon.png');
+await sharp(Buffer.from(svg)).resize(256, 256).png().toFile("icon.png");
 ```
 
 然后手动构建 ICO（嵌入多尺寸 PNG）。详见 [图标制作脚本模板](#图标制作脚本模板)。
@@ -274,6 +293,7 @@ Niri 等纯 Wayland 合成器上点击/键盘可能失效。运行时设 `PAKE_L
 `--proxy-url` 只配打包出的应用的 WebView 代理。CLI 本身的图标下载用 Node fetch，不走该代理。
 
 国内用户拉 Google favicons 失败时，手动下载：
+
 ```bash
 curl -x http://<proxy-host>:<port> -o /tmp/icon.png "<icon-url>"
 pake "<URL>" --icon /tmp/icon.png
@@ -282,18 +302,21 @@ pake "<URL>" --icon /tmp/icon.png
 ## 标准打包流程
 
 ### 1. 确认环境
+
 ```bash
 rustc --version   # 必须 ≥1.85
 node --version    # 必须 ≥18
 ```
 
 ### 2. 进入 Pake 仓库
+
 ```bash
 cd /path/to/Pake
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
 ### 3. 执行打包
+
 ```bash
 # 基础打包
 node dist/cli.js https://example.com --name Example --json
@@ -314,6 +337,7 @@ node dist/cli.js ./dist --name MyApp --json
 ```
 
 ### 4. 交付产物
+
 - Windows: `.msi`（默认）或 `.exe`
 - macOS: `.dmg` 或 `.app`
 - Linux: `.deb`、`.AppImage`、`.rpm`
@@ -343,9 +367,9 @@ node dist/cli.js --config app.json --json
 当用户要求圆角图标时，参考以下脚本：
 
 ```javascript
-import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
+import sharp from "sharp";
+import fs from "fs";
+import path from "path";
 
 // 1. SVG 绘制（圆角矩形 rx=22%）
 const svg = `<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
@@ -355,8 +379,8 @@ const svg = `<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
 
 // 2. 光栅化为 PNG
 const svgBuf = Buffer.from(svg);
-await sharp(svgBuf).resize(512, 512).png().toFile('icon_512.png');
-await sharp(svgBuf).resize(256, 256).png().toFile('icon_256.png');
+await sharp(svgBuf).resize(512, 512).png().toFile("icon_512.png");
+await sharp(svgBuf).resize(256, 256).png().toFile("icon_256.png");
 
 // 3. 构建 ICO（嵌入多尺寸 PNG）
 const sizes = [16, 24, 32, 48, 64, 128, 256];
@@ -383,8 +407,8 @@ const header = Buffer.alloc(6);
 header.writeUInt16LE(0, 0);
 header.writeUInt16LE(1, 2);
 header.writeUInt16LE(sizes.length, 4);
-const ico = Buffer.concat([header, ...entries, ...sizes.map(s => pngs[s])]);
-fs.writeFileSync('icon.ico', ico);
+const ico = Buffer.concat([header, ...entries, ...sizes.map((s) => pngs[s])]);
+fs.writeFileSync("icon.ico", ico);
 ```
 
 ## 验证打包结果

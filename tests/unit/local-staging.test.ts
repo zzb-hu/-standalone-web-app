@@ -68,16 +68,25 @@ describe('stageLocalTree via handleLocalFile', () => {
     await handleLocalFile(userDir, false, conf);
 
     // frontendDist should now point to an OS temp dir, not the package dist/
-    const stagedPath = (conf.build as Record<string, unknown>).frontendDist as string;
+    const stagedPath = (conf.build as Record<string, unknown>)
+      .frontendDist as string;
     expect(typeof stagedPath).toBe('string');
     expect(stagedPath.length).toBeGreaterThan(0);
-    expect(await fsExtra.pathExists(path.join(stagedPath, 'index.html'))).toBe(true);
-    expect(await fsExtra.pathExists(path.join(stagedPath, 'asset.txt'))).toBe(true);
+    expect(await fsExtra.pathExists(path.join(stagedPath, 'index.html'))).toBe(
+      true,
+    );
+    expect(await fsExtra.pathExists(path.join(stagedPath, 'asset.txt'))).toBe(
+      true,
+    );
 
     // Package's own dist/ must be untouched: cli.js and dev.js intact, no user content leaked in.
     const dist = path.join(fakePkg, 'dist');
-    expect(await fsExtra.readFile(path.join(dist, 'cli.js'), 'utf8')).toBe('cli');
-    expect(await fsExtra.readFile(path.join(dist, 'dev.js'), 'utf8')).toBe('dev');
+    expect(await fsExtra.readFile(path.join(dist, 'cli.js'), 'utf8')).toBe(
+      'cli',
+    );
+    expect(await fsExtra.readFile(path.join(dist, 'dev.js'), 'utf8')).toBe(
+      'dev',
+    );
     expect(await fsExtra.pathExists(path.join(dist, 'index.html'))).toBe(false);
     expect(await fsExtra.pathExists(path.join(dist, 'asset.txt'))).toBe(false);
 
@@ -90,7 +99,8 @@ describe('stageLocalTree via handleLocalFile', () => {
     const conf = makeTauriConf();
     await handleLocalFile(userDir, false, conf);
 
-    const stagedPath = (conf.build as Record<string, unknown>).frontendDist as string;
+    const stagedPath = (conf.build as Record<string, unknown>)
+      .frontendDist as string;
     expect(await fsExtra.pathExists(stagedPath)).toBe(true);
 
     restoreLocalTree();
@@ -120,10 +130,16 @@ describe('stageLocalTree via handleLocalFile', () => {
     // The failed staging must leave the package usable: original dist intact,
     // no stray dist_bak left behind (legacy concern, now also no stray temp ref).
     const dist = path.join(fakePkg, 'dist');
-    expect(await fsExtra.readFile(path.join(dist, 'cli.js'), 'utf8')).toBe('cli');
-    expect(await fsExtra.readFile(path.join(dist, 'dev.js'), 'utf8')).toBe('dev');
+    expect(await fsExtra.readFile(path.join(dist, 'cli.js'), 'utf8')).toBe(
+      'cli',
+    );
+    expect(await fsExtra.readFile(path.join(dist, 'dev.js'), 'utf8')).toBe(
+      'dev',
+    );
     expect(await fsExtra.pathExists(path.join(dist, 'index.html'))).toBe(false);
-    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist_bak'))).toBe(false);
+    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist_bak'))).toBe(
+      false,
+    );
   });
 
   it('copies through a symlinked input without writing into the real source', async () => {
@@ -134,9 +150,12 @@ describe('stageLocalTree via handleLocalFile', () => {
     const conf = makeTauriConf();
     await handleLocalFile(linkPath, false, conf);
 
-    const stagedPath = (conf.build as Record<string, unknown>).frontendDist as string;
+    const stagedPath = (conf.build as Record<string, unknown>)
+      .frontendDist as string;
     expect(fs.lstatSync(stagedPath).isSymbolicLink()).toBe(false);
-    expect(await fsExtra.pathExists(path.join(stagedPath, 'index.html'))).toBe(true);
+    expect(await fsExtra.pathExists(path.join(stagedPath, 'index.html'))).toBe(
+      true,
+    );
     // cli.js must not have leaked into the user's real source dir.
     expect(await fsExtra.pathExists(path.join(realDir, 'cli.js'))).toBe(false);
   });
@@ -149,8 +168,12 @@ describe('stageLocalTree via handleLocalFile', () => {
     ).rejects.toMatchObject({ code: 'INVALID_INPUT' });
 
     // Guard fires before any staging: package dist untouched, no temp dir staged.
-    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist', 'cli.js'))).toBe(true);
-    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist_bak'))).toBe(false);
+    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist', 'cli.js'))).toBe(
+      true,
+    );
+    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist_bak'))).toBe(
+      false,
+    );
   });
 
   it("rejects the package's own dist as input", async () => {
@@ -163,7 +186,9 @@ describe('stageLocalTree via handleLocalFile', () => {
       handleLocalFile(path.join(fakePkg, 'dist'), false, makeTauriConf()),
     ).rejects.toMatchObject({ code: 'INVALID_INPUT' });
 
-    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist', 'cli.js'))).toBe(true);
+    expect(await fsExtra.pathExists(path.join(fakePkg, 'dist', 'cli.js'))).toBe(
+      true,
+    );
   });
 
   it('handleLocalFile on a non-existent path falls back to web mode', async () => {
