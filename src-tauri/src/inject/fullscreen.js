@@ -23,6 +23,11 @@
     let originalNextSibling = null;
     let wasInBody = false;
     let monitorId = null;
+    // Scroll position captured at fullscreen entry, restored on exit to fix
+    // the Douyin/Bilibili "scrollbar after ESC" bug where lazy-loaded content
+    // shifts the page and leaves the video below the fold.
+    let savedScrollX = 0;
+    let savedScrollY = 0;
 
     if (!document.getElementById("pake-fullscreen-style")) {
       const styleEl = document.createElement("style");
@@ -94,6 +99,13 @@
 
     function enterFullscreen(element) {
       fullscreenElement = element;
+
+      // Save scroll position before entering fullscreen so we can restore it
+      // on exit. Sites like Douyin/Bilibili lazy-load content while fullscreen
+      // is active, which shifts scroll offsets; restoring scrollY prevents the
+      // "scrollbar appears after ESC" bug where the video is off-screen.
+      savedScrollX = window.scrollX;
+      savedScrollY = window.scrollY;
 
       let targetElement = element;
       if (element === document.documentElement || element === document.body) {
@@ -190,6 +202,13 @@
       wasInBody = false;
 
       return appWindow.setFullscreen(false).then(() => {
+        // Restore scroll position AFTER the native fullscreen exits and the
+        // layout settles. Use rAF so the browser paints one frame before we
+        // jump — otherwise the transition may fight our scrollTo.
+        requestAnimationFrame(() => {
+          window.scrollTo(savedScrollX, savedScrollY);
+        });
+
         const event = new Event("fullscreenchange", { bubbles: true });
         document.dispatchEvent(event);
         exitingElement.dispatchEvent(event);
