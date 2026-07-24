@@ -769,10 +769,21 @@ document.addEventListener("DOMContentLoaded", () => {
           // preventDefault + client-side navigation. Forcing a full
           // window.location reload here (and stopping propagation) would defeat
           // that handler and reload the whole app on every click. Instead,
-          // retarget the link to "_self" so the webview never opens a browser
-          // window, then let the page's own handler run. If nothing intercepts
-          // the click, the default _self navigation keeps it inside the app.
+          // preventDefault to stop the native "open new browser window"
+          // behavior, then retarget to "_self" so that if the page's own
+          // handler does NOT intercept (no React onClick), the default
+          // navigation stays inside the webview instead of escalating to the
+          // system browser.
+          //
+          // KEY FIX: Previously we only changed target to "_self" WITHOUT
+          // preventDefault. On sites like Douyin's user profile page, the
+          // video card <a target="_blank"> had no SPA onClick handler, so the
+          // browser executed the default navigation → full page reload →
+          // Douyin loaded its web version instead of staying in SPA mode.
+          // Adding preventDefault stops the full-page reload; the page's own
+          // handlers (if any) still run because we don't stopImmediatePropagation.
           if (!window.pakeConfig?.new_window) {
+            e.preventDefault();
             anchorElement.target = "_self";
           }
           return;
@@ -881,7 +892,33 @@ document.addEventListener("DOMContentLoaded", () => {
       // With --new-window the native handler opens an in-app window; without it,
       // originalWindowOpen would route the internal target to the system browser
       // and strand SSO callbacks, so navigate in place instead.
+      //
+      // KEY FIX: Previously this did `window.location.href = absoluteUrl` which
+      // caused a FULL PAGE RELOAD. On SPAs like Douyin, reloading the page
+      // destroys the app shell and loads the web version — the user sees the
+      // site "jump out" from the SPA view to the full web page. Instead, try
+      // SPA-style navigation: pushState + popstate event lets the site's own
+      // router handle the URL change without reloading the page. Only fall
+      // back to full navigation for cross-origin internal URLs.
       if (!window.pakeConfig?.new_window) {
+        try {
+          const targetUrl = new URL(absoluteUrl);
+          const currentUrl = new URL(window.location.href);
+          if (targetUrl.origin === currentUrl.origin) {
+            // Same-origin: use SPA navigation (pushState + popstate) so the
+            // site's router handles the route change without a page reload.
+            window.history.pushState(
+              {},
+              "",
+              targetUrl.pathname + targetUrl.search + targetUrl.hash,
+            );
+            window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
+            return null;
+          }
+        } catch (e) {
+          // URL parsing failed — fall through to full navigation below
+        }
+        // Cross-origin internal URL (different subdomain): full navigation
         window.location.href = absoluteUrl;
         return window;
       }
