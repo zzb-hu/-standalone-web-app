@@ -854,6 +854,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Rewrite the window.open function.
   const originalWindowOpen = window.open;
   window.open = function (url, name, specs) {
+    // Guard: if url is undefined/null/empty, don't let it become a navigation
+    // to "undefined" or "/undefined". This happens when a SPA calls
+    // window.open(someVar) before someVar is assigned (e.g. Douyin's video
+    // switch button fires before the next video ID has loaded). The original
+    // window.open(undefined) would be caught by the try/catch below and passed
+    // to originalWindowOpen, which the WebView interprets as a request to
+    // navigate to "https://www.douyin.com/undefined". Returning null signals
+    // "no window opened" and lets the caller handle the missing URL gracefully.
+    if (url === undefined || url === null || url === "") {
+      return null;
+    }
+
     const normalizedUrl = normalizeAnchorHref(url);
     if (normalizedUrl.startsWith("#")) {
       window.location.href = new URL(normalizedUrl, window.location.href).href;
