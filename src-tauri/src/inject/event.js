@@ -869,15 +869,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Rewrite the window.open function.
   const originalWindowOpen = window.open;
   window.open = function (url, name, specs) {
-    // Guard: if url is undefined/null/empty, don't let it become a navigation
-    // to "undefined" or "/undefined". This happens when a SPA calls
-    // window.open(someVar) before someVar is assigned (e.g. Douyin's video
-    // switch button fires before the next video ID has loaded). The original
-    // window.open(undefined) would be caught by the try/catch below and passed
-    // to originalWindowOpen, which the WebView interprets as a request to
-    // navigate to "https://www.douyin.com/undefined". Returning null signals
-    // "no window opened" and lets the caller handle the missing URL gracefully.
-    if (url === undefined || url === null || url === "") {
+    // Guard: if url is undefined/null/empty OR the string "undefined"/"null",
+    // don't let it become a navigation to "/undefined". This happens when a
+    // SPA calls window.open(someVar) before someVar is assigned (e.g. Douyin's
+    // video switch button fires before the next video ID has loaded). The
+    // original window.open(undefined) would be caught by the try/catch below
+    // and passed to originalWindowOpen, which the WebView interprets as a
+    // request to navigate to "https://www.douyin.com/undefined". Returning
+    // null signals "no window opened" and lets the caller handle the missing
+    // URL gracefully.
+    if (
+      url === undefined ||
+      url === null ||
+      url === "" ||
+      url === "undefined" ||
+      url === "null"
+    ) {
       return null;
     }
 
@@ -954,6 +961,41 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       return originalWindowOpen.call(window, url, name, specs);
     }
+  };
+
+  // Rewrite history.pushState / replaceState to block "/undefined" URLs.
+  // These methods change the URL bar WITHOUT triggering a page navigation,
+  // so the Rust on_navigation handler never fires. A SPA (e.g. Douyin's
+  // React Router) can call pushState({}, "", "/undefined") when a video ID
+  // is still loading, and the URL bar silently becomes
+  // https://www.douyin.com/undefined. Intercepting here prevents that.
+  const originalPushState = history.pushState.bind(history);
+  const originalReplaceState = history.replaceState.bind(history);
+
+  function isUndefinedPath(url) {
+    if (!url) return false;
+    try {
+      const str = typeof url === "string" ? url : String(url);
+      return str === "undefined" || str.includes("/undefined");
+    } catch {
+      return false;
+    }
+  }
+
+  history.pushState = function (state, title, url) {
+    if (isUndefinedPath(url)) {
+      console.warn("[Pake] Blocked pushState to undefined URL:", url);
+      return;
+    }
+    return originalPushState(state, title, url);
+  };
+
+  history.replaceState = function (state, title, url) {
+    if (isUndefinedPath(url)) {
+      console.warn("[Pake] Blocked replaceState to undefined URL:", url);
+      return;
+    }
+    return originalReplaceState(state, title, url);
   };
 
   // Set the default zoom, There are problems with Loop without using try-catch.
