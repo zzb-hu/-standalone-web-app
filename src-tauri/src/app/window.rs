@@ -581,7 +581,19 @@ fn build_window(
         });
     }
 
-    window_builder = window_builder.on_navigation(|_| true);
+    // Intercept navigation to "/undefined" — this happens when a SPA (e.g.
+    // Douyin's video switch) renders <a href={someVar}> or calls
+    // window.location.href = someVar before someVar is assigned, producing a
+    // literal "undefined" string that the browser resolves to
+    // https://www.douyin.com/undefined. Blocking it here keeps the webview on
+    // the current page so the SPA can retry with a valid URL.
+    window_builder = window_builder.on_navigation(|url| {
+        let url_str = url.as_str();
+        if url_str.contains("/undefined") || url_str.ends_with("/undefined") {
+            return false;
+        }
+        true
+    });
 
     window_builder.build()
 }

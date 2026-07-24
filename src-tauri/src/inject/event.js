@@ -723,6 +723,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Guard: if href is literally "undefined"/"null" (string), it means a
+      // React/Vue component rendered <a href={someVar}> before someVar was
+      // assigned. Letting the default navigation run would load
+      // https://www.douyin.com/undefined. Block it here; the SPA's own state
+      // will retry with a valid URL once the data loads.
+      if (
+        rawHref === "undefined" ||
+        rawHref === "null" ||
+        rawHref.includes("/undefined")
+      ) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return;
+      }
+
       const target = anchorElement.target;
       const hrefUrl = new URL(anchorElement.href);
       const absoluteUrl = hrefUrl.href;
